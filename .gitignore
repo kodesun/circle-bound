@@ -1,5 +1,9 @@
 # Project specific
 build/
+.cache/
+
+# Running Script
+compile.sh
 
 # Prerequisites
 *.d

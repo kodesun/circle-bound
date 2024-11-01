@@ -1,5 +1,8 @@
 #pragma once
 
+#include "models/Border.hpp"
+#include "models/Ball.hpp"
+
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -18,9 +21,11 @@ namespace satisfying_ball {
             std::string title;
             sf::RenderWindow window;
             sf::Clock clock;
-
             sf::Font font;
 
+            Border border;
+            Ball ball;
+            
             bool paused = false;
 
             void HandleInput();

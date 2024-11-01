@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(SFML COMPONENTS window audio graphics network)
 
 file(GLOB SOURCE_FILES
-    "src/*.cpp" 
+    "src/*.cpp"
+    "src/models/*.cpp"
 )
 file(GLOB HEADER_FILES "include/*.hpp")
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "models/Border.hpp"
+#include "models/Boundary.hpp"
 #include "models/Ball.hpp"
 
 #include <SFML/Graphics/Font.hpp>
@@ -23,7 +23,7 @@ namespace satisfying_ball {
             sf::Clock clock;
             sf::Font font;
 
-            Border border;
+            Boundary boundary;
             Ball ball;
             
             bool paused = false;

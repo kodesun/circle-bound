@@ -1,9 +1,9 @@
-#include "models/Border.hpp"
+#include "models/Boundary.hpp"
 #include "DEFINITIONS.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 
 namespace satisfying_ball{
-    Border::Border(){
+    Boundary::Boundary(){
         shape.setRadius(this->radius-10.0f);
         shape.setPointCount(50);
         shape.setOrigin(shape.getRadius(), shape.getRadius());
@@ -13,7 +13,7 @@ namespace satisfying_ball{
         shape.setFillColor(sf::Color::Transparent);
     }
 
-    void Border::Draw(sf::RenderWindow &window){
+    void Boundary::Draw(sf::RenderWindow &window){
         window.draw(shape);
     }
 }

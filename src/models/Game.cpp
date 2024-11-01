@@ -71,7 +71,7 @@ namespace satisfying_ball{
 
     void Game::Draw(float dt){
         this->window.clear();
-        this->border.Draw(this->window);
+        this->boundary.Draw(this->window);
         this->ball.Draw(this->window);
         this->window.display();
     }

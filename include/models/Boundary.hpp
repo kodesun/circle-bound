@@ -6,9 +6,9 @@
 #include <SFML/Graphics.hpp>
 
 namespace satisfying_ball {
-    class Border {
+    class Boundary {
         public:
-            Border();
+            Boundary();
 
             void Draw(sf::RenderWindow &window);
 

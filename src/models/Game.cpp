@@ -66,7 +66,7 @@ namespace satisfying_ball{
     }
 
     void Game::Update(){
-
+        this->ball.Update(this->dt); 
     }
 
     void Game::Draw(float dt){

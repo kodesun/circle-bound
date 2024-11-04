@@ -14,10 +14,14 @@ namespace satisfying_ball {
     public:
         Ball();
 
+        void Update(float dt);
         void Draw(sf::RenderWindow &window);
 
     private:
-        sf::Vector2f velocity = sf::Vector2f(0.0f, 0.0f);
+        sf::Vector2f velocity = sf::Vector2f(4.0f, 0.0f);
+
         sf::CircleShape shape;
+
+        void HandleCollisions();
     };
 }

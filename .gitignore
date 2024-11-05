@@ -1,2 +1,3 @@
 # Python project specific
 .venv
+__pycache__

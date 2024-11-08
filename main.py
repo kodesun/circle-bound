@@ -11,8 +11,12 @@ if __name__ == "__main__":
 
     while True:
         display.handle_input()
-        display.clear()
-        ball.update()
-        display.draw(ball)
-        display.draw(boundary)
+        if not display.paused:
+            # display.clear()
+
+            ball.update()
+
+            display.draw(ball)
+            display.draw(boundary)
+
         display.show()

@@ -1,5 +1,7 @@
 # Well .. definitions of important constants
 
+import colorsys
+
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 RED = (255, 0, 0)
@@ -16,14 +18,27 @@ GRAVITY = -9.81
 
 BACKGROUND_COLOR = BLACK 
 
-## Boundary
+# ============================ 
+#       BOUNDARY 
+# ============================ 
 BOUNDARY_LINE_THICKNESS = 3
 BOUNDARY_MARGIN = 10
 BOUNDARY_RADIUS = (WINDOW_WIDTH//2) - BOUNDARY_MARGIN
 BOUNDARY_COLOR = WHITE 
 
 
-## Ball
+# ============================ 
+#       BALL 
+# ============================ 
 BALL_RADIUS = 10
-BALL_COLOR = RED
+BALL_HUE = 0
+BALL_HUE_SPEED = 0.5
 BALL_SOUND_FILEPATH = "assets/audio/golf_ball.wav"
+
+# Ball behavior after bounce
+BALL_APPLY_SPEED_FACTOR = True 
+BALL_SPEED_FACTOR = 1.015
+
+def hsl_to_rgb(h, s, l):
+    r, g, b = colorsys.hls_to_rgb(h, l, s)
+    return int(r*255), int(g*255), int(b*255)

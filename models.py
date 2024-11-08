@@ -5,12 +5,13 @@ import pygame.gfxdraw
 
 from math import sqrt
 
-
 from definitions import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE
 from definitions import BACKGROUND_COLOR
 from definitions import FRAMES_PER_SECOND, GRAVITY
 from definitions import BOUNDARY_RADIUS, BOUNDARY_COLOR
-from definitions import BALL_RADIUS, BALL_COLOR, BALL_SOUND_FILEPATH
+from definitions import BALL_RADIUS, BALL_HUE, BALL_HUE_SPEED, BALL_SOUND_FILEPATH
+from definitions import BALL_APPLY_SPEED_FACTOR, BALL_SPEED_FACTOR
+from definitions import hsl_to_rgb
 
 class Display():
     def __init__(self):
@@ -20,6 +21,7 @@ class Display():
 
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
+        self.paused = True
 
     def handle_input(self):
         for event in pygame.event.get():
@@ -28,6 +30,8 @@ class Display():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     quit()
+                elif event.key == pygame.K_p:
+                    self.paused = not self.paused 
 
     def show(self):
         pygame.display.update()
@@ -39,15 +43,17 @@ class Display():
     def draw(self, object):
         object.draw(self.screen)
 
+
 class Ball():
+    '''Class defining a single ball and behavior.'''
     def __init__(self):
-        self.name = "BALL" 
-        self.posx = WINDOW_WIDTH//2 
+        self.posx = WINDOW_WIDTH//2-50 
         self.posy = WINDOW_HEIGHT//2 
         self.radius = BALL_RADIUS 
-        self.color = BALL_COLOR 
+        self.hue = BALL_HUE
+        self.color = hsl_to_rgb(self.hue, 1.0, 0.5)
         self.sound = BALL_SOUND_FILEPATH
-        self.velx = 1 
+        self.velx = 0 
         self.vely = 0
         self.accx = 0
         self.accy = GRAVITY/FRAMES_PER_SECOND
@@ -92,18 +98,29 @@ class Ball():
         self.velx = reflected[0]
         self.vely = -reflected[1]
 
+    def change_hue(self):
+        self.hue += BALL_HUE_SPEED / 360
+        if self.hue > 1:
+            self.hue -= 1
+        
+        self.color = hsl_to_rgb(self.hue, 1.0, 0.5)
 
     def update(self):
         if self.dist_from_center() + self.radius >= BOUNDARY_RADIUS:
             pygame.mixer.Sound.play(pygame.mixer.Sound(self.sound))
-            self.velx *= 1.05
-            self.vely *= 1.05
             self.reflect()
 
+            if BALL_APPLY_SPEED_FACTOR: 
+                self.vely *= BALL_SPEED_FACTOR
+                self.velx *= BALL_SPEED_FACTOR
+
+        self.change_hue()
         self.accelerate()
         self.move()
 
+
 class Boundary():
+    '''Class defining confining boundary and it's behavior.'''
     def __init__(self):
         self.posx = WINDOW_WIDTH//2
         self.posy = WINDOW_HEIGHT//2

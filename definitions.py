@@ -38,7 +38,7 @@ BALL_HUE_SPEED = 0.5
 BALL_SOUND_FILEPATH = "assets/audio/golf_ball.wav"
 
 # Ball behavior after bounce
-BALL_APPLY_SPEED_FACTOR = True 
+BALL_APPLY_SPEED_FACTOR = False
 BALL_SPEED_FACTOR = 1.015
 
 def hsl_to_rgb(h, s, l):

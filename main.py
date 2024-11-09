@@ -4,9 +4,9 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = 'hide'
 from models import Display, Boundary, Ball
 
 if __name__ == "__main__":
-    display = Display() 
+    display = Display()
 
-    ball = Ball() 
+    ball = Ball()
     boundary = Boundary()
 
     while True:

@@ -1,2 +1,4 @@
-# satisfying-ball
-A SFML project to recreate the satisfying ball shorts that keep popping up everywhere.
+# Circle Bound
+
+A small pygame project that taught me about implementing physics into a ball boucing
+within a circle. Enjoy :)

@@ -5,7 +5,7 @@ import pygame.gfxdraw
 
 from math import sqrt
 
-from definitions import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE
+from definitions import WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE, START_PAUSED
 from definitions import BACKGROUND_COLOR
 from definitions import FRAMES_PER_SECOND, GRAVITY
 from definitions import BOUNDARY_RADIUS, BOUNDARY_COLOR
@@ -21,7 +21,7 @@ class Display():
 
         self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         self.clock = pygame.time.Clock()
-        self.paused = True
+        self.paused = START_PAUSED 
 
     def handle_input(self):
         for event in pygame.event.get():
@@ -111,8 +111,9 @@ class Ball():
             self.reflect()
 
             if BALL_APPLY_SPEED_FACTOR: 
-                self.vely *= BALL_SPEED_FACTOR
-                self.velx *= BALL_SPEED_FACTOR
+               speed_increase = 0.05
+               self.velx += speed_increase if self.velx > 0 else -speed_increase
+               self.vely += speed_increase if self.vely > 0 else -speed_increase
 
         self.change_hue()
         self.accelerate()
